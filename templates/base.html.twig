@@ -2,11 +2,74 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <title>{% block title %}Vtt en Coeur de Garonne{% endblock %}</title>
+        {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
     </head>
     <body>
+        <div class=" container-fluid ">
+            <div class="entet">
+                <h2>VTT-TRAIL-TREK en Cœur De Garonne</h2>
+            </div>
+        
+                <nav class="divOneNav navbar row d-flex align-items-center">
+                    <div class="col-10 ">
+                        
+                        <ul class="d-flex ">
+                        <!-- <img src="img/VTT-logo-final-ok1.jpg" alt="coeur_de_gar"> -->
+                            <li><a href="{{path('site')}}" class="nav-link"> Accueil</a></li>
+                            <li><a href="{{path('adhesion')}}" class="nav-link"> Adhésions </a></li>
+                            <li><a href="{{path('event')}}" class="nav-link">Evenement</a></li>
+                            <!-- <li><a href="trail.php" class="nav-link">TRAIL</a></li> -->
+                        </ul>
+                    </div>
+        
+                    <div class="col-2">
+                        <ul class="align-items-center d-flex">
+                            <li class="nav-item">
+                                <a href="https://www.facebook.com/vttencoeurdegaronne/" >
+                                    <img class="fac" src="img/Webp.net-resizeimage.png/" alt="facebook">
+                                </a>
+                            </li>
+                        
+                            <!-- <li class="nav-item" >
+                                <a href="adhesion.php" class="nav-link">
+                                    
+                            </li> -->
+                        </ul>
+        
+                    </div>
+                </nav>
+                <div class="nav d-flex justify-content-around row col-12" >
+                    <ul class=" deuxiemenav d-flex justify-content-between align-items-center">
+        
+                        <li >
+                            <a href="{{path("vtt")}}" class="nav-link"> VTT</a>
+                        </li>
+                        <li >
+                            <a href="{{path("treck")}}" class="nav-link"> TREK</a>
+                        </li>
+                        <li >
+                            <a href="{{path("trail")}}" class="nav-link">TRAIL</a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        <!-- =============================================================== -->
+        <!-- corp de la page -->
+        <!-- =============================================================== -->
         {% block body %}{% endblock %}
+
+
+        {# 
+            footer a venir
+            #}
+<footer>
+    <h1>footer a  venir </h1>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem aperiam, laudantium vel veniam eum minus animi harum saepe, iste necessitatibus nostrum, reprehenderit eaque asperiores ullam aut omnis vero reiciendis tempore ratione provident ipsa neque! Aliquid omnis repudiandae fuga, nisi repellendus natus rem! Quisquam, animi? Nulla quibusdam debitis placeat aut aliquam.</p>
+</footer>
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>
