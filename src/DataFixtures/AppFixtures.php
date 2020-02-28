@@ -13,7 +13,7 @@ class AppFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-        $faker = Factory::create(); // pb ?
+        $faker = Factory::create('fr_FR'); // pb ?
 
         for($i = 1 ; $i <=5 ; $i++){
             $post = new Post();
@@ -22,9 +22,9 @@ class AppFixtures extends Fixture
                 ->setContent($faker->paragraph())
                 ->setCreatedAt($faker->dateTimeAD($max = 'now', $timezone = null));
 
+                $manager->persist($post);
 
         }
-        $manager->persist($post);
         $manager->flush();
     }
 }
