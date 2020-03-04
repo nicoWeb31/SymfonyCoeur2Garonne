@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use App\Entity\AdherentStatus;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
@@ -65,6 +68,22 @@ class Users
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photo;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Comment", inversedBy="users")
+     */
+    private $comments;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\AdherentStatus", inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $status;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -187,6 +206,44 @@ class Users
     public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+        }
+
+        return $this;
+    }
+
+    public function getStatus(): ?AdherentStatus
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?AdherentStatus $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

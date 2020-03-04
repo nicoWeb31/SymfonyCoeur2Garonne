@@ -2,9 +2,10 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Photos;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
@@ -49,9 +50,17 @@ class Post
      */
     private $comments;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Photos", inversedBy="posts")
+     */
+    private $photo;
+
+
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->photo = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,4 +158,31 @@ class Post
 
         return $this;
     }
+
+    /**
+     * @return Collection|Photos[]
+     */
+    public function getPhoto(): Collection
+    {
+        return $this->photo;
+    }
+
+    public function addPhoto(Photos $photo): self
+    {
+        if (!$this->photo->contains($photo)) {
+            $this->photo[] = $photo;
+        }
+
+        return $this;
+    }
+
+    public function removePhoto(Photos $photo): self
+    {
+        if ($this->photo->contains($photo)) {
+            $this->photo->removeElement($photo);
+        }
+
+        return $this;
+    }
+
 }
