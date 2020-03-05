@@ -80,9 +80,15 @@ class Users
      */
     private $status;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\UserCat", mappedBy="usersCat")
+     */
+    private $userCats;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->userCats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -244,6 +250,34 @@ class Users
     public function setStatus(?AdherentStatus $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserCat[]
+     */
+    public function getUserCats(): Collection
+    {
+        return $this->userCats;
+    }
+
+    public function addUserCat(UserCat $userCat): self
+    {
+        if (!$this->userCats->contains($userCat)) {
+            $this->userCats[] = $userCat;
+            $userCat->addUsersCat($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserCat(UserCat $userCat): self
+    {
+        if ($this->userCats->contains($userCat)) {
+            $this->userCats->removeElement($userCat);
+            $userCat->removeUsersCat($this);
+        }
 
         return $this;
     }
