@@ -2,12 +2,23 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
+use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class SiteController extends AbstractController
 {
+
+    private $repo;
+
+    public function __construct(PostRepository $repo)
+    {
+        $this->repo = $repo;
+    }
+
+
     /**
      * this->render methode de abstractController retourn vue de type reponse
      * @Route("/", name="site")
@@ -23,7 +34,9 @@ class SiteController extends AbstractController
      */
     public function trail():response
     {
-        return $this->render('post/trail.html.twig');
+        $TrailPost = $this->repo->findBy(['category' =>26]);
+        // dd($TrailPost);
+        return $this->render('post/trail.html.twig',compact('TrailPost'));
     }
 
     /**
@@ -31,7 +44,8 @@ class SiteController extends AbstractController
      */
     public function treck():response
     {
-        return $this->render('post/treck.html.twig');
+        $postTreck = $this->repo->findBy(['category' => 27]);
+        return $this->render('post/treck.html.twig',compact('postTreck'));
     }
 
     /**
@@ -39,7 +53,8 @@ class SiteController extends AbstractController
      */
     public function vtt():response
     {
-        return $this->render('post/vtt.html.twig');
+        $VttPost = $this->repo->findBy(['category' =>29]);
+        return $this->render('post/vtt.html.twig',compact('VttPost'));
     }
 
 
@@ -48,7 +63,8 @@ class SiteController extends AbstractController
      */
     public function actu():response
     {
-        return $this->render('post/actu.html.twig');
+        $postActu = $this->repo->findBy(['category'=>28]);
+        return $this->render('post/actu.html.twig',compact('postActu'));
     }
 
     /**

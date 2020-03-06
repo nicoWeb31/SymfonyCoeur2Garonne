@@ -7,4 +7,16 @@
 <h1>Treck</h1>
 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo dolore, deserunt quas repellendus laudantium veniam natus cum veritatis. Deleniti obcaecati rem placeat odit delectus officia, ducimus itaque recusandae ea autem at reprehenderit qui mollitia, numquam illo atque dolore alias nemo, eaque ad. Labore, dignissimos ab! Ducimus magnam quia ex vitae?</p>
 
+<ul>
+    {% for post in postTreck %}
+    <li>
+        <h3>{{post.title}} cree le {{post.createdAT | date("m/d/Y")}}</h3>
+        <h4>{{post.subtitle}}</h4>  
+        <p>{{post.content}}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+
+
 {% endblock %}
