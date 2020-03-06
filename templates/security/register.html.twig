@@ -1,0 +1,48 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1>Nous rejoindre</h1>
+{{form_start(form)}}
+
+{{form_row(form.nom,{'label':'Nom','attr':{
+    'placeholder' : 'Nom...'
+}})}}
+{{form_row(form.prenom,{'label':'Prénom','attr':{
+    'placeholder' : 'prénom...'
+}})}}
+{{form_row(form.adresse,{'label':'Adresse', 'attr':{
+    'placeholder' : 'rue...'
+}})}}
+{{form_row(form.cp,{'label':'Code postal','attr':{
+    'placeholder' : 'code postal...'
+}})}}
+{{form_row(form.ville,{'label':'Ville','attr':{
+    'placeholder' : 'ville...'
+}})}}
+{{form_row(form.pseudo,{'label':'Pseudo','attr':{
+    'placeholder' : 'pseudo...'
+}})}}
+{{form_row(form.password,{'label':'Password','attr':{
+    'placeholder' : 'pass...'
+}})}}
+{{form_row(form.passwordConfirm,{'label':'Confirmation Password', 'attr':{
+    'placeholder' : 'confirmation du pass... '
+}})}}
+{{form_row(form.mail,{'label':'Mail','attr':{
+    'placeholder' : 'mail...'
+}})}}
+{{form_row(form.phone,{'label':'Télephone','attr':{
+    'placeholder' : 'numéro de ...'
+}})}}
+{{form_row(form.photo,{'label':'photo','attr':{
+    'placeholder' : 'photo...'
+}})}}
+
+
+
+
+<button type="submit" class="btn btn-success">Inscription</button>
+{{form_end(form)}}
+{% endblock %}

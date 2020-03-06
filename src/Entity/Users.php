@@ -54,6 +54,8 @@ class Users
      */
     private $password;
 
+    public $passwordConfirm;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -281,4 +283,5 @@ class Users
 
         return $this;
     }
+
 }

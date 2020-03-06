@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Post;
 use App\Entity\Category;
 use App\Repository\PostRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SiteController extends AbstractController
 {
@@ -69,23 +71,30 @@ class SiteController extends AbstractController
 
 
     /**
-     * @Route("/post/show/{id}",requirements={"id":"\d+"}, name="show")
+     * @Route("/post/show/{id}",requirements={"id":"\d+"}, name="post.show")
      */
     public function show(int $id):Response
     {
         $postOne = $this->repo->find($id);
-        dd($postOne);
         return $this->render('post/show.html.twig',compact('postOne'));
     }
 
-       /**
-     * @Route("/post/show/{id}/edit",requirements={"id":"\d+"}, name="show")
+    /**
+     * @Route("/post/show/{id}/edit",requirements={"id":"\d+"}, name="post.edit")
      */
-    public function edit(int $id):Response
+    public function edit(Post $post):Response
     {
-        $postOne = $this->repo->find($id);
-        dd($postOne);
-        return $this->render('admin/edit.html.twig',compact('postOne'));
+        $form = $this->createFormBuilder($post)
+            ->add('title',TextType::class)
+            
+        
+        ->getForm();
+            
+
+        return $this->render('admin/edit.html.twig',[
+            'post'=> $post,
+            'form'=>$form->createView()
+        ]);
     }
 
     /**

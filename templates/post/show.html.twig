@@ -7,6 +7,8 @@
 <h2>{{postOne.getSubtitle}}</h2>
 <p>{{postOne.content}}</p>
 <p><a href="{{path('site')}}">retour</a></p>
+<p><a href="{{path('post.edit',{'id':postOne.id})}}">editer l'article</a></p>
+
 
 {% endblock %}
 
