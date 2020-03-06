@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{parent()}} | show{% endblock %}
+{% block body %}
+
+<h1>{{postOne.title}} </h1>
+<h3>le {{postOne.createdAt | date("m/d/Y")}}</h3>
+<h2>{{postOne.getSubtitle}}</h2>
+<p>{{postOne.content}}</p>
+<p><a href="{{path('site')}}">retour</a></p>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

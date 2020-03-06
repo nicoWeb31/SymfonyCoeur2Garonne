@@ -30,7 +30,7 @@ class SiteController extends AbstractController
 
 
     /**
-     * @Route("/trail", name="trail")
+     * @Route("/post/trail", name="trail")
      */
     public function trail():response
     {
@@ -40,7 +40,7 @@ class SiteController extends AbstractController
     }
 
     /**
-     * @Route("/treck", name="treck")
+     * @Route("/post/treck", name="treck")
      */
     public function treck():response
     {
@@ -49,7 +49,7 @@ class SiteController extends AbstractController
     }
 
     /**
-     * @Route("/vtt", name="vtt")
+     * @Route("/post/vtt", name="vtt")
      */
     public function vtt():response
     {
@@ -59,12 +59,33 @@ class SiteController extends AbstractController
 
 
     /**
-     * @Route("/actu", name="actu")
+     * @Route("/post/actu", name="actu")
      */
     public function actu():response
     {
         $postActu = $this->repo->findBy(['category'=>28]);
         return $this->render('post/actu.html.twig',compact('postActu'));
+    }
+
+
+    /**
+     * @Route("/post/show/{id}",requirements={"id":"\d+"}, name="show")
+     */
+    public function show(int $id):Response
+    {
+        $postOne = $this->repo->find($id);
+        dd($postOne);
+        return $this->render('post/show.html.twig',compact('postOne'));
+    }
+
+       /**
+     * @Route("/post/show/{id}/edit",requirements={"id":"\d+"}, name="show")
+     */
+    public function edit(int $id):Response
+    {
+        $postOne = $this->repo->find($id);
+        dd($postOne);
+        return $this->render('admin/edit.html.twig',compact('postOne'));
     }
 
     /**
