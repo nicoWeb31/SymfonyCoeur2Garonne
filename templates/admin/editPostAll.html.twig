@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actualité | {{parent()}}{% endblock %}
+{% block body %}
+
+
+<h1>Administraion des Posts</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for post in allPost %}
+        <tr>
+            <th>{{post.title}}</th>
+            <th>
+                <a href="{{path('admin.post.edit',{id : post.id})}}" class='btn btn-primary'>Edition</a>
+            </th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

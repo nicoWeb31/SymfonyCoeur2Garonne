@@ -80,24 +80,6 @@ class SiteController extends AbstractController
     }
 
     /**
-     * @Route("/post/show/{id}/edit",requirements={"id":"\d+"}, name="post.edit")
-     */
-    public function edit(Post $post):Response
-    {
-        $form = $this->createFormBuilder($post)
-            ->add('title',TextType::class)
-            
-        
-        ->getForm();
-            
-
-        return $this->render('admin/edit.html.twig',[
-            'post'=> $post,
-            'form'=>$form->createView()
-        ]);
-    }
-
-    /**
      * @Route("/evenement", name="event")
      */
     public function event():response
