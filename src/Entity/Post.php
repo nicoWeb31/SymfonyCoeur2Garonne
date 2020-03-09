@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use App\Entity\Photos;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
@@ -12,6 +13,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Post
 {
+
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -61,6 +64,7 @@ class Post
     {
         $this->comments = new ArrayCollection();
         $this->photo = new ArrayCollection();
+        $this->createdAt = new DateTime();
     }
 
     public function getId(): ?int

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Actualité | {{parent()}}{% endblock %}
+{% block title %}Edit Post | {{parent()}}{% endblock %}
 {% block body %}
 
 
@@ -18,11 +18,19 @@
             <th>{{post.title}}</th>
             <th>
                 <a href="{{path('admin.post.edit',{id : post.id})}}" class='btn btn-primary'>Edition</a>
+                <form method="POST" action="{{path('admin.post.delete',{id : post.id})}}" style='display:inline-block'>
+                    <input type="hidden" name="_method" value="DELETE" >
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete'~post.id) }}">
+                    <button class="btn btn-danger">Supprimer</button>
+                </form>
             </th>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+<div class="text-right">
+    <a href="{{path('admin.post.new')}}" class="btn btn-success">Creer un Post</a>
+</div>
 
 
 {% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Creation de Post | {{parent()}}{% endblock %}
+{% block body %}
+
+
+<h1>edition d'un Post</h1>
+
+{{ form_start(form)}}
+
+    {{ form_widget(form)}}
+    
+    <button class = "btn btn-primary" type="submit"> Creer </button>
+    
+    {{ form_end(form)}}
+
+{% endblock %}
